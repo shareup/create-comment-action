@@ -1,0 +1,37 @@
+name: create-comment
+description: GitHub action to create a commit comment either on open PRs that contain the commit or on the commit itself if there are none
+
+inputs:
+  sha:
+    required: true
+    description: The sha of the commit to post a comment about, will default to the sha that triggered this action
+    default: ${{ github.sha }}
+  body:
+    required: true
+    description: What do you want the comment to say?
+  repo:
+    required: false
+    description: Name of the repo, will default to the current repo's name
+  owner:
+    required: false
+    description: Name of the repo's owner (user or org), will default to the current repo's owner
+  always_succeed:
+    required: false
+    description: If true, then won't fail the check suite if the comment fails to post
+    default: false
+  github_token:
+    required: true
+    description: API token for GitHub
+    default: ${{ github.token }}
+  debug:
+    required: false
+    description: If true, then output debugging information
+    default: false
+
+outputs:
+  response:
+    description: HTTP response payload
+
+runs:
+  using: node12
+  main: dist/index.js

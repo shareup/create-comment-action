@@ -1,0 +1,4 @@
+#!/bin/sh
+
+yarn package
+git add dist
