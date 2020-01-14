@@ -36,7 +36,7 @@ const client = new Octokit({ auth: token, log })
       }
 
       const results = await Promise.all(prs.map(async pr => {
-        return await createIssueComment(pr.number)
+        return createIssueComment(pr.number)
       }))
 
       response = results[0]
@@ -75,9 +75,9 @@ async function associatedPullRequests (): Promise<PR[]> {
   }
 }
 
-async function createIssueComment (issue_number: number) {
+async function createIssueComment (number: number) {
   const resp = await client.request('POST /repos/:owner/:repo/issues/:issue_number/comments', {
-    issue_number,
+    issue_number: number,
     owner,
     repo,
     body

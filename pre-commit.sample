@@ -1,4 +1,8 @@
 #!/bin/sh
 
+set -e
+set -x
+
+yarn lint
 yarn package
 git add dist

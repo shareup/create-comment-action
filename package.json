@@ -6,18 +6,30 @@
   "repository": "https://github.com/shareup/create-comment-action",
   "author": "Nathan Herald <nathan@shareup.app>",
   "license": "MIT",
-  "standard": {
+  "eslintConfig": {
+    "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "error"
+    }
+  },
+  "standardx": {
     "ignore": [
       "dist"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
     ]
   },
   "scripts": {
-    "lint": "standard",
+    "lint": "standardx **/*.ts",
     "package": "ncc build index.ts -o dist -s"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
     "@zeit/ncc": "^0.21.0",
-    "standard": "^14.3.1"
+    "standardx": "^5.0.0"
   },
   "dependencies": {
     "@actions/core": "^1.2.1",
